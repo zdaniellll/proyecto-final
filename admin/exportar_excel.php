@@ -1,27 +1,27 @@
 <?php
-/**
- * exportar_excel.php — Genera y descarga un archivo Excel con todos los mensajes de contacto.
- * REQUIERE sesión activa (auth.php). Solo accesible desde el panel de administración.
- *
- * Técnica: envía cabeceras HTTP que le indican al navegador que la respuesta es un
- * archivo Excel descargable. El contenido real es una tabla HTML que Excel puede abrir.
- * Nota: se usa extensión .xls (formato antiguo) para máxima compatibilidad con Excel.
- */
-require_once 'includes/auth.php';
-require_once 'includes/conexion.php';
+// --- Exportar mensajes a Excel ----------------------------------------------
+// Solo accesible con sesión admin activa (auth.php lo verifica)
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/conexion.php';
 
-// Consulta todos los campos relevantes para el reporte
-$resultado = mysqli_query($conexion, "SELECT id, nombre_remitente, correo_remitente, mensaje_texto, fecha_envio FROM mensajes_contacto ORDER BY id DESC");
+// Trae todos los mensajes ordenados del más reciente al más antiguo
+$resultado = mysqli_query(
+    $conexion,
+    "SELECT id, nombre_remitente, correo_remitente, mensaje_texto, fecha_envio
+     FROM mensajes_contacto
+     ORDER BY id DESC"
+);
 
 if (!$resultado) {
     die("Error en la consulta: " . mysqli_error($conexion));
 }
 
-// Cabeceras HTTP que fuerzan la descarga del archivo como Excel
+// --- Cabeceras HTTP ----------------------------------------------------------
+// Fuerzan al navegador a descargar el archivo como Excel (.xls)
 header("Content-Type: application/vnd.ms-excel; charset=utf-8");
 header("Content-Disposition: attachment; filename=Mensajes_INCB_" . date('d-m-Y') . ".xls");
-header("Pragma: no-cache");   // evita que el navegador cachee el archivo
-header("Expires: 0");          // el archivo expira inmediatamente (siempre se regenera)
+header("Pragma: no-cache"); // sin caché: cada descarga genera el archivo fresco
+header("Expires: 0");
 ?>
 <meta charset="utf-8">
 <table border="1" cellpadding="6" cellspacing="0">

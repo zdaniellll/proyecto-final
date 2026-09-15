@@ -1,20 +1,17 @@
 <?php
-/**
- * contacto_seccion.php
- * Sección de Contacto del INCB – diseñada para ser incluida desde index.php
- * Usa la misma conexión (includes/conexion.php) que noticias.php
- */
+// --- Sección de contacto ----------------------------------------------------
+// Se incluye desde index.php. Procesa el formulario y guarda el mensaje en BD.
 
+// Variables del formulario: se rellenan si hay un POST previo con error
 $cs_nombre  = '';
 $cs_correo  = '';
 $cs_mensaje = '';
 $cs_alerta  = '';
 
+// Solo procesa si el formulario fue enviado (POST con botón de contacto)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contacto_submit'])) {
 
-    // Guardamos el texto tal cual (sin escapar) — el escape se hace solo al
-    // momento de imprimir en HTML (más abajo), para no guardar "&amp;" en la BD
-    // ni terminar mostrando "&amp;amp;" si el mensaje se re-muestra dos veces.
+    // Lee los campos; el escape se aplica solo al imprimir (no al guardar en BD)
     $cs_nombre  = trim($_POST['nombre']  ?? '');
     $cs_correo  = trim($_POST['correo']  ?? '');
     $cs_mensaje = trim($_POST['mensaje'] ?? '');
@@ -32,18 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['contacto_submit'])) {
             <strong>Formulario expirado.</strong> Por favor intenta enviarlo de nuevo.
           </div>";
     } else {
-        require_once __DIR__ . '/includes/conexion.php';
+        require_once __DIR__ . '/../includes/conexion.php';
         $guardado_en_bd = false;
         $correo_enviado = false;
         $error_detalle  = '';
 
+        // Guarda el mensaje en la tabla mensajes_contacto usando consulta preparada
         $sql = "INSERT INTO mensajes_contacto (nombre_remitente, correo_remitente, mensaje_texto) VALUES (?, ?, ?)";
         if ($stmt = mysqli_prepare($conexion, $sql)) {
             mysqli_stmt_bind_param($stmt, "sss", $cs_nombre, $cs_correo, $cs_mensaje);
             if (mysqli_stmt_execute($stmt)) {
                 $guardado_en_bd = true;
 
-                // Envío por FormSubmit (igual que contacto.php)
+                // Reenvío del mensaje al correo institucional via FormSubmit (servicio externo)
                 $correo_destino = "d4886160@gmail.com";
                 $datos_post = [
                     'Remitente'      => $cs_nombre,

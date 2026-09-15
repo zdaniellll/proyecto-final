@@ -1,8 +1,10 @@
 <?php
-// Protege cualquier página que lo incluya: si no hay sesión de admin, expulsa al login.
-require_once __DIR__ . '/config.php'; // ya arranca la sesión
+// --- Guardia de sesión admin ------------------------------------------------
+// Incluir al inicio de cualquier página del panel protegido.
+// Si no hay sesión activa, redirige al login y corta la ejecución.
+require_once __DIR__ . '/config.php';
 
 if (!isset($_SESSION['usuario_admin']) || empty($_SESSION['usuario_admin'])) {
-    header("Location: " . $base_url . "login.php");
+    header("Location: " . app_url('login.php'));
     exit();
 }

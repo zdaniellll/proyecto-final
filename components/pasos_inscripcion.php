@@ -1,9 +1,4 @@
-<?php
-/**
- * pasos_inscripcion.php — Sección visual con los 4 pasos del proceso de inscripción.
- * Se incluye desde index.php como sección modular. No tiene lógica PHP propia.
- */
-?>
+<?php // Sección: pasos de inscripción (solo HTML, sin lógica PHP propia) ?>
 <!-- Sección proceso: tarjetas numeradas con los pasos para inscribirse -->
 <section id="proceso" class="py-5 bg-white">
   <div class="container">
@@ -55,7 +50,7 @@
     </div>
 
     <div class="text-center mt-5">
-      <a href="<?= $base_url; ?>inscripcion.php" class="btn btn-primary btn-lg rounded-pill shadow-sm px-4">
+      <a href="<?= app_url('inscripcion.php'); ?>" class="btn btn-primary btn-lg rounded-pill shadow-sm px-4">
         <i class="bi bi-ui-checks me-2"></i>Iniciar mi inscripción
       </a>
     </div>

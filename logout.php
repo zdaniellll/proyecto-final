@@ -1,16 +1,13 @@
 <?php
-// 1. Reanudamos la sesión actual que está activa en el navegador
-session_start();
+// --- Cierre de sesión -------------------------------------------------------
+// Carga config para tener acceso a app_url() y la sesión ya iniciada
+require_once __DIR__ . '/includes/config.php';
 
-// 2. Vaciamos todas las variables de sesión (como 'usuario_admin')
+// Elimina todas las variables de sesión y destruye la sesión del servidor
 session_unset();
-
-// 3. Destruimos la sesión por completo de la memoria del servidor
 session_destroy();
 
-// 4. Redirigimos al administrador de vuelta a la puerta de entrada
-// [!] IMPORTANTE: Si tu pantalla para iniciar sesión se llama "index.php", 
-// cambia la palabra "login.php" por "index.php" aquí abajo.
-header("Location: index.php");
+// Redirige al login tras cerrar sesión
+header('Location: ' . app_url('login.php'));
 exit();
 ?>

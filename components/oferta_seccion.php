@@ -31,7 +31,7 @@
             </div>
             <h3 class="h5 fw-bold mb-3">Bachillerato General</h3>
             <p class="text-muted small mb-4">Formación integral en áreas humanísticas y científicas con duración de 2 años.</p>
-            <a href="<?= $base_url; ?>oferta_academica.php#general" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
+            <a href="<?= app_url('oferta_academica.php#tab-general'); ?>" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
           </div>
         </div>
       </div>
@@ -48,7 +48,7 @@
             </div>
             <h3 class="h5 fw-bold mb-3">Desarrollo de Software</h3>
             <p class="text-muted small mb-4">Aprende lógica, bases de datos y creación de sistemas informáticos en 3 años.</p>
-            <a href="<?= $base_url; ?>oferta_academica.php#software" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
+            <a href="<?= app_url('oferta_academica.php#tab-software'); ?>" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
             </div>
             <h3 class="h5 fw-bold mb-3">Administrativo Contable</h3>
             <p class="text-muted small mb-4">Gestión financiera, leyes tributarias y administración de empresas en 3 años.</p>
-            <a href="<?= $base_url; ?>oferta_academica.php#contable" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
+            <a href="<?= app_url('oferta_academica.php#tab-contable'); ?>" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
             </div>
             <h3 class="h5 fw-bold mb-3">Bachillerato a Distancia</h3>
             <p class="text-muted small mb-4">Flexibilidad total para culminar tus estudios combinando modalidades virtual y presencial.</p>
-            <a href="<?= $base_url; ?>oferta_academica.php#distancia" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
+            <a href="<?= app_url('oferta_academica.php#tab-distancia'); ?>" class="btn btn-outline-primary btn-sm mt-auto stretched-link">Ver detalles</a>
           </div>
         </div>
       </div>
