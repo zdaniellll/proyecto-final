@@ -1,4 +1,12 @@
-<
+<?php
+$page_title = 'INCB | Instituto Nacional de Ciudad Barrios';
+$page_desc  = 'Sitio Web Institucional del Instituto Nacional de Ciudad Barrios (INCB).';
+require_once __DIR__ . '/../includes/header.php';
+?>
+
+<section id="inicio" class="p-0">
+  <div id="carruselInstitucional" class="carousel slide hero-carousel" data-bs-ride="carousel">
+    <div class="carousel-inner shadow-sm">
       <!-- Slide 1 -->
       <div class="carousel-item active" data-bs-interval="6000">
         <img src="<?= $base_url; ?>img/fachada.jpg" alt="Fachada INCB">
